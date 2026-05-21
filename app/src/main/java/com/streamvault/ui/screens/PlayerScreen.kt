@@ -549,4 +549,27 @@ private fun PlayerSeekBar(
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .fillMaxWidth(displ
+                    .fillMaxWidth(displayProgress)
+                    .background(SVColors.SeekBar)
+            )
+        }
+
+        // Thumb
+        Box(
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .offset(x = (displayProgress * 1f).let { 0.dp }) // handled by fraction
+                .fillMaxWidth(displayProgress)
+                .wrapContentWidth(Alignment.End)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(14.dp * thumbScale)
+                    .background(SVColors.SeekBar, CircleShape)
+                    .shadow(4.dp, CircleShape)
+            )
+        }
+    }
+}
+
+enum class SeekFeedback { BACKWARD, FORWARD, PLAY, PAUSE }
